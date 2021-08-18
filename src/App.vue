@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 body {
   font-family: "Open Sans", sans-serif;
   background-color: #f0f0f0;
@@ -35,13 +35,12 @@ body {
   margin: 0;
   overflow: hidden;
   min-width: 320px;
-  box-sizing: border-box;
-  width: 100%;
 }
-.app {
-  height: 100%;
-  margin: 0;
-  display: block;
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #000000;
 }
 html, body, div, 
 span, applet, object, iframe, 

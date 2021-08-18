@@ -9,10 +9,10 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://api.nytimes.com/svc/books/v3/'
 
 export default {
-    name: 'cardList',
+    name: 'cardTheme',
     props: {
         listProps: Object,
-		date: Date
+		date: String
     },
 	data () {
 		return {
@@ -20,6 +20,8 @@ export default {
             nbrResult: null
 		}
 	},
+    created() {
+    },
     methods: {
         getBestSellersList () {
             this.loadingList = true
@@ -38,8 +40,8 @@ export default {
                     console.log(error)
                 })
         },
-        loadSelectedList(list) {
-            console.log(list)
+        loadSelectedList() {
+            this.$router.push({ name: 'OneList', params: { date: this.date, name: this.listProps.list_name_encoded }})
         }
     }
 };

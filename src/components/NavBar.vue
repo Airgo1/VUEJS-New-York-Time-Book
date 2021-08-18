@@ -1,6 +1,6 @@
 <template>
 <div class="nav">
-  <b-navbar variant="faded" type="light">
+  <b-navbar >
     <b-navbar-brand href="#" right>
       <img center src="@/assets/img/LogoNYTimes.jpg" class="Logo" />
     </b-navbar-brand>
