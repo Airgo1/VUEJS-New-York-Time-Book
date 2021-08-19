@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HomePage from '@/pages/Home'
 import OneListPage from '@/pages/OneList'
-import StorePage from '@/pages/Store'
+import CartPage from '@/pages/Cart'
+//import CheckoutPage from '@/pages/Checkout'
 
 Vue.use(Router)
 
@@ -20,10 +21,16 @@ export default new Router({
       props: true
     },
     {
-      path: '/store',
-      name: 'Store',
-      component: StorePage,
+      path: '/cart',
+      name: 'Cart',
+      component: CartPage,
       props: true
-    }
+    },
+    /*{
+      path: '/checkout',
+      name: 'Checkout',
+      component: CheckoutPage,
+      props: true
+    }*/
   ]
 })

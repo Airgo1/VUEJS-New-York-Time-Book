@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="foot">
     <p>
         Crée par Airgo1
     </p>
@@ -7,7 +7,7 @@
 </template>
 
 <style scoped>
-.footer{
+.foot{
   background:rgb(255, 255, 255);
   color: black;
   position:fixed;
@@ -15,5 +15,6 @@
   width:100%;
   margin-top: 20px;
   text-align: center;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
 }
 </style>

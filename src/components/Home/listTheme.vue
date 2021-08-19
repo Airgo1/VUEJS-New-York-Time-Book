@@ -123,14 +123,13 @@ export default {
   },
   watch: {
       queryDate (newVal, oldVal) {
-        this.setlistShort(newVal, this.querySelectedUpdate)
         this.createSelector()
+        this.setlistShort(newVal, this.querySelectedUpdate)
       },
       querySelectedUpdate (newVal, oldVal) {
-        this.setlistShort(this.queryDate, newVal)
         this.createSelector()
+        this.setlistShort(this.queryDate, newVal)
       }    
-
   }
 
 }
