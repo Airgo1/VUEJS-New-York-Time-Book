@@ -29,7 +29,7 @@ export default {
 <style scoped>
 body {
   font-family: "Open Sans", sans-serif;
-  background-color: #f0f0f0;
+  background-color: white;
   font-size: 100%;
   padding: 0;
   margin: 0;
