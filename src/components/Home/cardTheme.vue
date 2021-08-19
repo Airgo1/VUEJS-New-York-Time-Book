@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 axios.defaults.baseURL = 'https://api.nytimes.com/svc/books/v3/'
 
 export default {

@@ -1,5 +1,5 @@
 <template>
-    <div class="cart">
+    <div>
         <shopingCart  />
     </div>
 </template>
@@ -15,7 +15,5 @@ export default {
 </script>
 
 <style >
-.cart {
-  margin: 15px;
-}
+
 </style>

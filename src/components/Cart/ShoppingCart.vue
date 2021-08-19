@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="cart">
+  <div class="card">
     <b-card title="Your Cart" sub-title="List of book in your cart">
       <b-list-group class="list-book">
         <b-list-group-item v-for="book in cart" :key="book.title">
@@ -30,18 +30,18 @@
       <p>Total (with shipping): {{ totalWithShipping }} €</p>
     </b-card> 
   </div>
-  <div class="form">
-    <formCheckout />
+  <div class="card">
+    <FormCheckout />
   </div>
 </div>
 </template>
 
 <script>
-import formCheckout from '@/components/Cart/formCheckout'
+import FormCheckout from '@/components/Cart/FormCheckout'
 export default {
   name: 'shoppingCarte',
   components: {
-    formCheckout
+    FormCheckout
   },
   data () {
     return {
@@ -99,7 +99,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.card {
+  margin: 15px;
+}
 .list-book {
   margin-top: 15px;
   margin-bottom: 15px;
