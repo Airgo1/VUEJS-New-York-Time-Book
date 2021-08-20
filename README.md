@@ -1,5 +1,10 @@
 # nytime
 
+Pour des soucis de dépendances et de version de node et du web pack, il m'a été impossible d'utiliser du scss à dû à l'impossibilité d'installer le module sass-loader.
+
+Ce problème à empêcher d'implémenter le check out au projet. Il reste pourtant développé et sera fonctionnel une fois le souci de dépendance corrigé.
+
+
 > A Vue.js project
 
 ## Build Setup
