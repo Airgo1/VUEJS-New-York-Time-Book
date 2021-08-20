@@ -3,6 +3,12 @@
         <b-card>
             <b-row align-v="center" cols="2">
                 <b-col>
+                    <div class='icon'>
+                        <b-icon icon="box" aria-hidden="true" font-scale="7.5"></b-icon>
+                    </div>
+                    <div class='icon'>
+                        <strong> Shipping form </strong>
+                    </div>
                     <b-input-group prepend="First name" class="mb-2">
                         <b-form-input v-model="firstName" aria-label="First name" type="text"></b-form-input>
                     </b-input-group>
@@ -24,7 +30,6 @@
                     <GoogmeMap v-bind:featureProps="feature"/>
                 </b-col>
             </b-row>
-        <b-button>CheckOut</b-button>
         </b-card>
     </div>
 </template>
@@ -78,5 +83,8 @@ export default {
 </script>
 
 <style>
-
+.icon {
+    text-align:center;
+    padding-bottom: 50px;
+}
 </style>

@@ -1,4 +1,4 @@
-<template>
+o<template>
  <div class="col-span-1 lg:col-span-6">
   <h4 class="text-3xl text-gray-700 mb-5">Payment information</h4>
   <div class="p-10 rounded-md shadow-md bg-white">

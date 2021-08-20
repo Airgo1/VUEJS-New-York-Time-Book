@@ -1,7 +1,7 @@
 <template>
   <footer class="foot">
     <p>
-        Crée par Airgo1
+        By BURDET Nicolas
     </p>
   </footer>
 </template>

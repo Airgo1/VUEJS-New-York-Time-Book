@@ -7,7 +7,7 @@
            <b-container>
             <b-row class="text-center" align-v="center">
               <b-col>
-                <b-img :src="book.image" width="50" fluid alt="Responsive image"></b-img>
+                <b-img :src="book.image" fluid alt="Responsive image"></b-img>
               </b-col>
               <b-col>
                 <strong> Tite : </strong> <br>{{ book.title }} <br>
