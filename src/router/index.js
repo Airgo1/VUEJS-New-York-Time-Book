@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import HomePage from '@/pages/Home'
 import OneListPage from '@/pages/OneList'
 import CartPage from '@/pages/Cart'
-import CheckoutPage from '@/pages/Checkout'
+//import CheckoutPage from '@/pages/Checkout'
 
 Vue.use(Router)
 
@@ -26,11 +26,11 @@ export default new Router({
       component: CartPage,
       props: true
     },
-    {
+    /*{
       path: '/checkout',
       name: 'Checkout',
       component: CheckoutPage,
       props: true
-    }
+    }*/
   ]
 })
