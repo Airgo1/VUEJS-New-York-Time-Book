@@ -40,7 +40,7 @@ export default {
       }
   },
   watch: {
-      featureProps (newValue) {
+      featureProps (newValue, oldValue) {
         console.log('new feature')
         this.feature = newValue
         this.center = {

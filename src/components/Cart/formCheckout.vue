@@ -4,18 +4,18 @@
             <b-row align-v="center" cols="2">
                 <b-col>
                     <b-input-group prepend="First name" class="mb-2">
-                        <b-form-input v-model="firstName" aria-label="First name"></b-form-input>
+                        <b-form-input v-model="firstName" aria-label="First name" type="text"></b-form-input>
                     </b-input-group>
                     <b-input-group prepend="Last name" class="mb-2">
-                        <b-form-input v-model="lastName" aria-label="Last name"></b-form-input>
+                        <b-form-input v-model="lastName" aria-label="Last name" type="text"></b-form-input>
                     </b-input-group>
                     <b-input-group prepend="Email" class="mb-2">
-                        <b-form-input v-model="email" aria-label="Email"></b-form-input>
+                        <b-form-input v-model="email" aria-label="Email" type="email"></b-form-input>
                     </b-input-group>
                     <b-input-group prepend="Adress" class="mb-2">
-                        <b-form-input v-model="adress" list="my-list-id"></b-form-input>
+                        <b-form-input v-model="adress" list="my-list-id" type="text"></b-form-input>
                         <datalist id="my-list-id">
-                            <option v-for="feature in geoReponse.features">{{ feature.properties.label }}</option>
+                            <option v-for="feature in geoReponse.features" v-bind:key="feature.properties.label">{{ feature.properties.label }}</option>
                         </datalist> 
                     </b-input-group> 
                                   
@@ -24,6 +24,7 @@
                     <GoogmeMap v-bind:featureProps="feature"/>
                 </b-col>
             </b-row>
+        <b-button>CheckOut</b-button>
         </b-card>
     </div>
 </template>
@@ -58,9 +59,6 @@ export default {
             await axios(config)
                 .then(response => {
                     this.geoReponse = response.data
-                    if(response.data.features.length==1) {
-                        this.feature = response.data.features[0]
-                    }
                 })
                 .catch(error => {
                     console.log(error)
@@ -70,6 +68,9 @@ export default {
     watch: {
         adress (newValue) {
             this.apiGeoGouv(newValue)
+            if( this.geoReponse.features.length==1) {
+                this.feature =  this.geoReponse.features[0]
+            }
         }
     }
     

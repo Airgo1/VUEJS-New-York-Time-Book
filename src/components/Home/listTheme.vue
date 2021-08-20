@@ -22,7 +22,13 @@
     </b-container>
 
     <b-container class="listCard">
-      <carTheme v-for="one in listShort" v-bind:key="one.list_name_encoded" v-bind:listProps="one" v-bind:date="queryDate" class="listCard"></carTheme>
+      <div v-if="listShort">
+        <carTheme v-for="one in listShort" v-bind:key="one.list_name_encoded" v-bind:listProps="one" v-bind:date="queryDate" class="listCard"></carTheme>
+      </div>
+      
+      <div v-else>
+        <b-icon icon="exclamation-circle" style="width: 120px; height: 120px;"></b-icon>
+      </div>
     </b-container>
 
   </div>
@@ -40,6 +46,8 @@ export default {
     carTheme
   },
   data () {
+    const now = new Date()
+    const today = now.getFullYear()+'-'+(now.getMonth() + 1).toString().padStart(2, "0")+'-'+now.getDate()
     return {
       apiKey: 'kg5NbaANHHWdCoQNd7lMd6UGbRkrvoyi',
 
@@ -51,29 +59,20 @@ export default {
       loadingList: false,
       haveError: false,
       messageError: '',
-
-      currentDate: null,
       
       qerySelectorOption: [],
       qerySelectorUpdateOption: [{value: null, text: 'All'},{value: 'WEEKLY', text: 'WEEKLY'},{value: 'MONTHLY', text: 'MONTHLY'}],
       querySelected: null,
       querySelectedUpdate: null,
       queryTheme: null,
-      queryDate: null
+      queryDate: today
     }
   },
   created () {
-    this.getCurrentDate()
     this.getBestSellersList()
     this.createSelector()
-    this.setlistShort(this.queryDate,  this.querySelectedUpdate)
   },
   methods: {
-    getCurrentDate () {
-      const now = new Date()
-      this.currentDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-      this.queryDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-    },
     async getBestSellersList () {
       this.loadingList = true
       var config = {
@@ -108,30 +107,32 @@ export default {
     setlistShort(date, updated) {
       this.listShort = []
       this.listAll.forEach(element => {
-        if(element.oldest_published_date<=date && element.newest_published_date>=date) {
-          if(updated==null) {
+        if(element.oldest_published_date<date && element.newest_published_date>date) {
+          if(updated == null) {
             this.listShort.push(element)
           } else {
             if(element.updated == updated) {
               this.listShort.push(element)
             }
           }
-          
         }
-      });
+      })
+      this.loadingList = false
     }
   },
   watch: {
-      queryDate (newVal, oldVal) {
-        this.createSelector()
-        this.setlistShort(newVal, this.querySelectedUpdate)
-      },
-      querySelectedUpdate (newVal, oldVal) {
-        this.createSelector()
-        this.setlistShort(this.queryDate, newVal)
-      }    
+    queryDate (newVal, oldVal) {
+      this.createSelector()
+      this.setlistShort(newVal, this.querySelectedUpdate)
+    },
+    querySelectedUpdate (newVal, oldVal) {
+      this.createSelector()
+      this.setlistShort(this.queryDate, newVal)
+    },
+    listAll () {
+      this.setlistShort(this.queryDate, this.querySelectedUpdate)
+    }  
   }
-
 }
 </script>
 

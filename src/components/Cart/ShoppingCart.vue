@@ -1,19 +1,20 @@
 <template>
-<div>
-  <div class="card">
+<div class="cart">
+  <div class="contain">
     <b-card title="Your Cart" sub-title="List of book in your cart">
-      <b-list-group class="list-book">
+      <b-list-group class="list-book vertical-align">
         <b-list-group-item v-for="book in cart" :key="book.title">
            <b-container>
-            <b-row>
+            <b-row class="text-center" align-v="center">
               <b-col>
                 <b-img :src="book.image" width="50" fluid alt="Responsive image"></b-img>
               </b-col>
               <b-col>
-                {{ book.title }}
+                <strong> Tite : </strong> <br>{{ book.title }} <br>
+                <strong> ISBN : </strong> <br>{{ book.isbn }} <br>
               </b-col>
               <b-col>
-                <b-form-spinbutton v-model="book.quantity" @change="updateQuantity(book.quantity, book.title)" min="0" max="100"></b-form-spinbutton>
+                <b-form-spinbutton v-model="book.quantity" @change="updateQuantity(book.quantity, book.title)" min="0" max="100" vertical></b-form-spinbutton>
               </b-col>
               <b-col>
                 X     {{ book.price }} € : {{ book.price*book.quantity}} €
@@ -30,8 +31,11 @@
       <p>Total (with shipping): {{ totalWithShipping }} €</p>
     </b-card> 
   </div>
-  <div class="card">
+  <div class="contain">
     <FormCheckout />
+  </div>
+  <div class="contain">
+    <b-button block >Checkout</b-button>
   </div>
 </div>
 </template>
@@ -63,6 +67,7 @@ export default {
         }
     },
     updateTotals () {
+      this.totalNoShipping = 0
       this.cart.forEach(element => {
         this.totalNoShipping += element.price * element.quantity
       })
@@ -74,6 +79,7 @@ export default {
         this.deleteBook(name)
       }
       this.saveCart()
+      this.updateTotals()
     },
     deleteBook (title) {
       var newCart = []
@@ -100,11 +106,18 @@ export default {
 </script>
 
 <style scoped>
-.card {
-  margin: 15px;
+.cart {
+  padding-bottom: 15px;
+}
+.contain {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 .list-book {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+.vertical-align {
+  vertical-align: middle;
 }
 </style>
