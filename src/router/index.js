@@ -25,8 +25,8 @@ export default new Router({
       name: 'Cart',
       component: CartPage,
       props: true
-    },
-    /*{
+    }/*,
+    {
       path: '/checkout',
       name: 'Checkout',
       component: CheckoutPage,
