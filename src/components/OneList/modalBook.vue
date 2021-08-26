@@ -31,13 +31,13 @@
 
         </b-modal>
 
-        <b-modal id="add-validation-model" size="xl" hide-header hide-footer>
+        <b-modal :id="'add-validation-model-'+book.title" size="xl" hide-header hide-footer>
             <diV>
                 {{ book.title }} is add to card
             </diV>
             <div>
                 <b-button href="#/cart">Go to cart</b-button>
-                <b-button @click="$bvModal.hide('add-validation-model')">Continue to buy</b-button>
+                <b-button @click="continueBuy">Continue to buy</b-button>
             </div>
         </b-modal>
     </div>
@@ -86,7 +86,7 @@ export default {
       }
 
       this.saveCart()
-      this.$bvModal.show('add-validation-model')
+      this.$bvModal.show('add-validation-model-'+this.book.title)
     },
     getLocalStorageCard () {
       if (localStorage.getItem('cart')) {
@@ -98,14 +98,14 @@ export default {
       localStorage.setItem('cart', parsed)
     },
     continueBuy () {
-      this.$bvModal.hide('add-validation-model')
+      this.$bvModal.hide('add-validation-model-'+this.book.title)
     }
   },
   watch: {
     isModalVisibleProps (newVal) {
       this.isModalVisible = newVal
       if (newVal === true) {
-        this.getLocalStorageCard('add-validation-model')
+        this.getLocalStorageCard('add-validation-model-'+this.book.title)
       }
     },
     isModalVisible (newVal) {
