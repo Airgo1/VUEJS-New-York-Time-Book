@@ -25,7 +25,7 @@
       <div v-if="listShort">
         <carTheme v-for="one in listShort" v-bind:key="one.list_name_encoded" v-bind:listProps="one" v-bind:date="queryDate" class="listCard"></carTheme>
       </div>
-      
+
       <div v-else>
         <b-icon icon="exclamation-circle" style="width: 120px; height: 120px;"></b-icon>
       </div>
@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import carTheme from '@/components/Home/cardTheme'
+import carTheme from '@/components/Home/CardTheme'
 
-import axios from 'axios';
+import axios from 'axios'
 axios.defaults.baseURL = 'https://api.nytimes.com/svc/books/v3/'
 
 export default {
@@ -47,7 +47,7 @@ export default {
   },
   data () {
     const now = new Date()
-    const today = now.getFullYear()+'-'+(now.getMonth() + 1).toString().padStart(2, "0")+'-'+now.getDate()
+    const today = now.getFullYear() + '-' + (now.getMonth() + 1).toString().padStart(2, '0') + '-' + now.getDate()
     return {
       apiKey: 'kg5NbaANHHWdCoQNd7lMd6UGbRkrvoyi',
 
@@ -59,9 +59,9 @@ export default {
       loadingList: false,
       haveError: false,
       messageError: '',
-      
+
       qerySelectorOption: [],
-      qerySelectorUpdateOption: [{value: null, text: 'All'},{value: 'WEEKLY', text: 'WEEKLY'},{value: 'MONTHLY', text: 'MONTHLY'}],
+      qerySelectorUpdateOption: [{ value: null, text: 'All' }, { value: 'WEEKLY', text: 'WEEKLY' }, { value: 'MONTHLY', text: 'MONTHLY' }],
       querySelected: null,
       querySelectedUpdate: null,
       queryTheme: null,
@@ -77,9 +77,9 @@ export default {
       this.loadingList = true
       var config = {
         method: 'get',
-        url: axios.defaults.baseURL+'/lists/names.json?api-key='+this.apiKey,
+        url: axios.defaults.baseURL + '/lists/names.json?api-key=' + this.apiKey,
         headers: { }
-      };
+      }
 
       await axios(config)
         .then(response => {
@@ -102,16 +102,16 @@ export default {
           value: element.list_name,
           text: element.display_name
         })
-      });
+      })
     },
-    setlistShort(date, updated) {
+    setlistShort (date, updated) {
       this.listShort = []
       this.listAll.forEach(element => {
-        if(element.oldest_published_date<date && element.newest_published_date>date) {
-          if(updated == null) {
+        if (element.oldest_published_date < date && element.newest_published_date > date) {
+          if (updated == null) {
             this.listShort.push(element)
           } else {
-            if(element.updated == updated) {
+            if (element.updated === updated) {
               this.listShort.push(element)
             }
           }
@@ -121,17 +121,17 @@ export default {
     }
   },
   watch: {
-    queryDate (newVal, oldVal) {
+    queryDate (newVal) {
       this.createSelector()
       this.setlistShort(newVal, this.querySelectedUpdate)
     },
-    querySelectedUpdate (newVal, oldVal) {
+    querySelectedUpdate (newVal) {
       this.createSelector()
       this.setlistShort(this.queryDate, newVal)
     },
     listAll () {
       this.setlistShort(this.queryDate, this.querySelectedUpdate)
-    }  
+    }
   }
 }
 </script>

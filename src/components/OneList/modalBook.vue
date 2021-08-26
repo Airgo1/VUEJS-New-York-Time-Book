@@ -2,7 +2,7 @@
     <div>
       <b-modal v-model="isModalVisible" size="xl" hide-footer>
         <template #modal-title>
-            <strong> {{ book.title }} </strong> <br> 
+            <strong> {{ book.title }} </strong> <br>
             by {{ book.author }}
         </template>
 
@@ -30,7 +30,7 @@
         </b-container>
 
         </b-modal>
-            
+
         <b-modal id="add-validation-model" size="xl" hide-header hide-footer>
             <diV>
                 {{ book.title }} is add to card
@@ -40,79 +40,79 @@
                 <b-button @click="$bvModal.hide('add-validation-model')">Continue to buy</b-button>
             </div>
         </b-modal>
-    </div>    
+    </div>
 </template>
 
 <script>
 export default {
-    name: 'modalBook',
-    props: {
-        bookProps: Object,
-        isModalVisibleProps: Boolean
-    },
-	data () {
-		return {
-            book: this.bookProps,
-			isModalVisible: this.isModalVisibleProps,
-            cart: [],
-            bookCart: {
-                title: null,
-                isbn:  null,
-                image: null,
-                price: null,
-                quantity: 1
-            }
-		}
-	},
-    created () {
-        this.book.price = this.book.primary_isbn13 % 30 + 10
+  name: 'modalBook',
+  props: {
+    bookProps: Object,
+    isModalVisibleProps: Boolean
+  },
+  data () {
+    return {
+      book: this.bookProps,
+      isModalVisible: this.isModalVisibleProps,
+      cart: [],
+      bookCart: {
+        title: null,
+        isbn: null,
+        image: null,
+        price: null,
+        quantity: 1
+      }
+    }
+  },
+  created () {
+    this.book.price = this.book.primary_isbn13 % 30 + 10
 
-        this.bookCart.title = this.book.title
-        this.bookCart.isbn  = this.book.primary_isbn13
-        this.bookCart.image = this.book.book_image
-        this.bookCart.price = this.book.price
-    },
-    methods: {
-        addBookToCard () {
-            var added = false
-            this.cart.forEach(element => {
-                if(element.title == this.bookCart.title) {
-                    element.quantity += 1
-                    added = true
-                } 
-            })
-            if(added!=true) {
-                this.cart.push(this.bookCart)
-            }   
-
-            this.saveCart()
-            this.$bvModal.show("add-validation-model")
-        },
-        getLocalStorageCard () {
-            if (localStorage.getItem('cart')) {
-                this.cart = JSON.parse(localStorage.getItem('cart'))
-            }
-        },
-        saveCart () {
-            const parsed = JSON.stringify(this.cart)
-            localStorage.setItem('cart', parsed)
-        },
-        continueBuy() {
-            this.$bvModal.hide("add-validation-model")
+    this.bookCart.title = this.book.title
+    this.bookCart.isbn = this.book.primary_isbn13
+    this.bookCart.image = this.book.book_image
+    this.bookCart.price = this.book.price
+  },
+  methods: {
+    addBookToCard () {
+      var added = false
+      this.cart.forEach(element => {
+        if (element.title === this.bookCart.title) {
+          element.quantity += 1
+          added = true
         }
+      })
+      if (added !== true) {
+        this.cart.push(this.bookCart)
+      }
+
+      this.saveCart()
+      this.$bvModal.show('add-validation-model')
     },
-    watch: {
-        isModalVisibleProps (newVal, oldVal) {
-            this.isModalVisible = newVal
-            if(newVal == true) {
-                this.getLocalStorageCard("add-validation-model")
-            }
-        },
-        isModalVisible (newVal, oldVal) {
-            this.$emit('update:isModalVisible', newVal)
-        }   
-    } 
-};
+    getLocalStorageCard () {
+      if (localStorage.getItem('cart')) {
+        this.cart = JSON.parse(localStorage.getItem('cart'))
+      }
+    },
+    saveCart () {
+      const parsed = JSON.stringify(this.cart)
+      localStorage.setItem('cart', parsed)
+    },
+    continueBuy () {
+      this.$bvModal.hide('add-validation-model')
+    }
+  },
+  watch: {
+    isModalVisibleProps (newVal) {
+      this.isModalVisible = newVal
+      if (newVal === true) {
+        this.getLocalStorageCard('add-validation-model')
+      }
+    },
+    isModalVisible (newVal) {
+      this.$emit('update:isModalVisible', newVal)
+    }
+  }
+}
 </script>
 
 <style>
@@ -124,4 +124,3 @@ export default {
   transform: translate(-50%, -50%);
 }
 </style>
-

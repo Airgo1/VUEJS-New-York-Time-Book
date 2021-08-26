@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import listTheme from '@/components/Home/listTheme'
+import listTheme from '@/components/Home/ListTheme'
 
 export default {
   name: 'Home',

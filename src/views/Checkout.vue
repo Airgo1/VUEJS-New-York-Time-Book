@@ -7,59 +7,59 @@
 </template>
 
 <script>
-import Payment from "@/components/Checkout/Payment";
-import Summary from "@/components/Checkout/Summary";
-import Alert from "@/components/Checkout/Alert";
+import Payment from '@/components/Checkout/Payment'
+import Summary from '@/components/Checkout/Summary'
+import Alert from '@/components/Checkout/Alert'
 
 export default {
-  name: "CheckoutPage",
+  name: 'CheckoutPage',
   components: {
     Payment,
     Summary,
     Alert
   },
-  data() {
+  data () {
     return {
       items: [
         {
-          title: "Title 1",
-          description: "lorem impsu liwe",
+          title: 'Title 1',
+          description: 'lorem impsu liwe',
           price: 550
         },
         {
-          title: "Title 2",
-          description: "lorem impsu liwe",
+          title: 'Title 2',
+          description: 'lorem impsu liwe',
           price: 250
         },
         {
-          title: "Title 3",
-          description: "lorem impsu liwe",
+          title: 'Title 3',
+          description: 'lorem impsu liwe',
           price: 150
         }
       ],
       alertVisible: false,
       total: 0,
       isCard: false
-    };
+    }
   },
-  mounted() {
-    this.getTotal(this.items);
+  mounted () {
+    this.getTotal(this.items)
   },
   methods: {
-    getTotal(items) {
+    getTotal (items) {
       items.forEach(item => {
-        this.total += item.price;
-      });
+        this.total += item.price
+      })
     },
-    handleAlert() {
-      this.alertVisible = true;
+    handleAlert () {
+      this.alertVisible = true
       setTimeout(() => {
-        this.alertVisible = false;
-      }, 4000);
+        this.alertVisible = false
+      }, 4000)
     },
-    handleCard() {
-      this.isCard = true;
+    handleCard () {
+      this.isCard = true
     }
   }
-};
+}
 </script>

@@ -310,5 +310,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../assets/scss/card-component.scss";
+@import "@/assets/scss/card-component.scss";
 </style>
