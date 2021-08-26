@@ -22,12 +22,12 @@
     </b-container>
 
     <b-container class="listCard">
-      <div v-if="listShort">
+      <div v-if="!loadingList">
         <carTheme v-for="one in listShort" v-bind:key="one.list_name_encoded" v-bind:listProps="one" v-bind:date="queryDate" class="listCard"></carTheme>
       </div>
 
-      <div v-else>
-        <b-icon icon="exclamation-circle" style="width: 120px; height: 120px;"></b-icon>
+      <div class="spining" v-else>
+       <b-spinner label="Spinning"></b-spinner>      
       </div>
     </b-container>
 
@@ -105,6 +105,7 @@ export default {
       })
     },
     setlistShort (date, updated) {
+      this.loadingList = true
       this.listShort = []
       this.listAll.forEach(element => {
         if (element.oldest_published_date < date && element.newest_published_date > date) {
@@ -147,5 +148,8 @@ export default {
 }
 .listCard {
   margin-top: 10px;
+}
+.spining{
+  text-align: center;
 }
 </style>

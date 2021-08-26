@@ -5,9 +5,12 @@
     </div>
 
     <b-container fluid="lg" class="container-card">
-        <b-row cols="2">
+        <b-row v-if="!loadingList" cols="2">
             <cardBook v-for="book in ListBestSellers.books" v-bind:key="book.title" v-bind:book="book" />
         </b-row>
+        <div class="spining" v-else>
+          <b-spinner label="Spinning"></b-spinner>      
+        </div>
     </b-container>
   </div>
 </template>
@@ -27,6 +30,7 @@ export default {
   },
   data () {
     return {
+      loadingList: true,
       ListBestSellers: [],
       nbrResult: null
     }
@@ -47,13 +51,11 @@ export default {
         .then(response => {
           this.ListBestSellers = response.data.results
           this.nbrResult = response.data.num_results
+          this.loadingList = false
         })
         .catch(function (error) {
           console.log(error)
         })
-    },
-    loadSelectedBooks (list) {
-      console.log(list)
     }
   }
 }
@@ -63,5 +65,8 @@ export default {
 .container-card {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+.spining{
+  text-align: center;
 }
 </style>
