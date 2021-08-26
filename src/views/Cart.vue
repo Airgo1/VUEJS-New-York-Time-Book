@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import shopingCart from '@/components/Cart/ShoppingCart'
+import shopingCart from '@/components/cart/ShoppingCart'
 export default {
   name: 'cart',
   components: {

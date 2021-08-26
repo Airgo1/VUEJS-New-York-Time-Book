@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import Payment from '@/components/Checkout/Payment'
-import Summary from '@/components/Checkout/Summary'
-import Alert from '@/components/Checkout/Alert'
+import Payment from '@/components/checkout/Payment'
+import Summary from '@/components/checkout/Summary'
+import Alert from '@/components/checkout/Alert'
 
 export default {
   name: 'CheckoutPage',
