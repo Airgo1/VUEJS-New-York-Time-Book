@@ -1,36 +1,40 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HomePage from '@/pages/Home'
-import OneListPage from '@/pages/OneList'
-import CartPage from '@/pages/Cart'
-//import CheckoutPage from '@/pages/Checkout'
+import VueRouter from 'vue-router'
+import HomePage from '@/views/Home.vue'
+import OneListPage from '@/views/OneList'
+import CartPage from '@/views/Cart'
+import CheckoutPage from '@/views/Checkout'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'Home',
-      component: HomePage
-    },
-    {
-      path: '/lists/:date/:name',
-      name: 'OneList',
-      component: OneListPage,
-      props: true
-    },
-    {
-      path: '/cart',
-      name: 'Cart',
-      component: CartPage,
-      props: true
-    }/*,
-    {
-      path: '/checkout',
-      name: 'Checkout',
-      component: CheckoutPage,
-      props: true
-    }*/
-  ]
+const routes = [
+  {
+    path: '/',
+    name: 'Home',
+    component: HomePage
+  },
+  {
+    path: '/lists/:date/:name',
+    name: 'OneList',
+    component: OneListPage,
+    props: true
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: CartPage,
+    props: true
+  },
+  {
+    path: '/checkout',
+    name: 'Checkout',
+    component: CheckoutPage,
+    props: true
+  }
+]
+
+const router = new VueRouter({
+  routes
 })
+
+export default router

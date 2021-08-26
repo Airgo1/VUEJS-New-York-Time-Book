@@ -7,10 +7,10 @@
 <script>
 import shopingCart from '@/components/Cart/ShoppingCart'
 export default {
-    name: 'cart',
-    components: {
-        shopingCart
-    }
+  name: 'cart',
+  components: {
+    shopingCart
+  }
 }
 </script>
 

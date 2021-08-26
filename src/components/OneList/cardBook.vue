@@ -14,32 +14,32 @@
                 </b-media>
             </b-card>
         </b-col>
-        
+
         <modalBook v-bind:isModalVisibleProps="isModalVisible" v-bind:bookProps="book" v-on:my-event="updatemodal"/>
     </div>
 </template>
 
 <script>
-import modalBook from '@/components/OneList/modalBooK'
+import modalBook from '@/components/OneList/ModalBook'
 export default {
-    name: 'cardBook',
-    components: {
-        modalBook
-    },
-    props: {
-        book: Object
-    },
-	data () {
-		return {
-			isModalVisible: false,
-		}
-	},
-    methods: {
-        updatemodal (value) {
-            this.isModalVisible = value
-        }
+  name: 'cardBook',
+  components: {
+    modalBook
+  },
+  props: {
+    book: Object
+  },
+  data () {
+    return {
+      isModalVisible: false
     }
-};
+  },
+  methods: {
+    updatemodal (value) {
+      this.isModalVisible = value
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -47,6 +47,6 @@ export default {
     margin-bottom: 15px;
 }
 .card:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 </style>
