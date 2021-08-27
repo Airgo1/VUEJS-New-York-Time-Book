@@ -1,13 +1,11 @@
 <template>
   <div>
-
     <listTheme />
-
   </div>
 </template>
 
 <script>
-import listTheme from '@/components/Home/listTheme'
+import listTheme from '@/components/Home/ListTheme'
 
 export default {
   name: 'Home',
@@ -17,7 +15,3 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

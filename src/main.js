@@ -1,7 +1,5 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 import router from './router'
 import store from './store'
 
@@ -22,8 +20,6 @@ Vue.use(IconsPlugin)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(BootstrapVueIcons)
 
-Vue.config.productionTip = false
-
 Vue.use(VueGoogleMaps, {
   load: {
     key: "AIzaSyDIcPfL0W4Yyn37TCdwbDl9AgQZNi4Aa0o",
@@ -33,11 +29,10 @@ Vue.use(VueGoogleMaps, {
 
 Vue.component('default-layout', Default)
 
-/* eslint-disable no-new */
+Vue.config.productionTip = false
+
 new Vue({
-  el: '#app',
   router,
   store,
-  components: { App },
-  template: '<App/>'
-})
+  render: h => h(App)
+}).$mount('#app')

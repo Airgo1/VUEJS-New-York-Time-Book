@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import listBook from '@/components/OneList/listBook'
+import listBook from '@/components/OneList/ListBook'
 export default {
-    name: 'OneList',
-    components: {
-        listBook
-    }
+  name: 'OneList',
+  components: {
+    listBook
+  }
 }
 </script>
 
