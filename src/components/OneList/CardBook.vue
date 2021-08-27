@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import modalBook from '@/components/oneList/ModalBook'
+import modalBook from '@/components/OneList/ModalBook'
 export default {
   name: 'cardBook',
   components: {

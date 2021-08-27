@@ -11,96 +11,88 @@ o<template>
      :backgroundImage="backgroundImage"
     />
    </div>
-   <div class="mb-6">
-    <label class="block mb-3 text-gray-600" for="">Name on card</label>
-    <input
-     type="text"
-     :id="fields.cardName"
-     v-letter-only
-     @input="changeName"
-     :value="formData.cardName"
-     data-card-field
-     autocomplete="off"
-     class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-wider"
-    />
-   </div>
-   <div class="mb-6">
-    <label class="block mb-3 text-gray-600" for="">Card number</label>
-    <input
-     type="tel"
-     :id="fields.cardNumber"
-     @input="changeNumber"
-     @focus="focusCardNumber"
-     @blur="blurCardNumber"
-     :value="formData.cardNumber"
-     :maxlength="cardNumberMaxLength"
-     data-card-field
-     autocomplete="off"
-     class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest"
-    />
-   </div>
-   <div class="mb-6 flex flex-wrap -mx-3w-full">
-    <div class="w-2/3 px-3">
-     <label class="block mb-3 text-gray-600" for="">Expiraion date</label>
-     <div class="flex">
-      <select
-       class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest mr-6"
-       :id="fields.cardMonth"
-       v-model="formData.cardMonth"
-       @change="changeMonth"
-       data-card-field
-      >
-       <option value disabled selected>Month</option>
-       <option
-        v-bind:value="n < 10 ? '0' + n : n"
-        v-for="n in 12"
-        v-bind:disabled="n < minCardMonth"
-        v-bind:key="n"
-        >{{ generateMonthValue(n) }}</option
-       >
-      </select>
-      <select
-       class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest"
-       :id="fields.cardYear"
-       v-model="formData.cardYear"
-       @change="changeYear"
-       data-card-field
-      >
-       <option value disabled selected>Year</option>
-       <option
-        v-bind:value="$index + minCardYear"
-        v-for="(n, $index) in 12"
-        v-bind:key="n"
-        >{{ $index + minCardYear }}</option
-       >
-      </select>
-     </div>
+   <b-card class='form-container'>
+    <div class="mb-6">
+      <label class="block mb-3 text-gray-600" for="">Name on card</label>
+      <input
+      type="text"
+      :id="fields.cardName"
+      v-letter-only
+      @input="changeName"
+      :value="formData.cardName"
+      data-card-field
+      autocomplete="off"
+      class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-wider"
+      />
     </div>
-    <div class="w-1/3 px-3">
-     <label class="block mb-3 text-gray-600" for="">CVC</label>
-     <input
+    <div class="mb-6">
+      <label class="block mb-3 text-gray-600" for="">Card number</label>
+      <input
       type="tel"
-      v-number-only
-      :id="fields.cardCvv"
-      maxlength="4"
-      :value="formData.cardCvv"
-      @input="changeCvv"
+      :id="fields.cardNumber"
+      @input="changeNumber"
+      @focus="focusCardNumber"
+      @blur="blurCardNumber"
+      :value="formData.cardNumber"
+      :maxlength="cardNumberMaxLength"
       data-card-field
       autocomplete="off"
       class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest"
-     />
+      />
     </div>
-   </div>
-   <div class="mb-6 text-right">
-    <span class="text-right font-bold">{{ total }} USD</span>
-   </div>
-   <div>
-    <button @click="finishPayment"
-     class="w-full text-ceenter px-4 py-3 bg-blue-500 rounded-md shadow-md text-white font-semibold"
-    >
-     Confirm payment
-    </button>
-   </div>
+    <div class="mb-6 flex flex-wrap -mx-3w-full">
+      <div class="w-2/3 px-3">
+      <div class="flex">
+      <label class="block mb-3 text-gray-600" for="">Expiraion date</label>
+        <select
+        class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest mr-6"
+        :id="fields.cardMonth"
+        v-model="formData.cardMonth"
+        @change="changeMonth"
+        data-card-field
+        >
+        <option value disabled selected>Month</option>
+        <option
+          v-bind:value="n < 10 ? '0' + n : n"
+          v-for="n in 12"
+          v-bind:disabled="n < minCardMonth"
+          v-bind:key="n"
+          >{{ generateMonthValue(n) }}</option
+        >
+        </select>
+        <select
+        class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest"
+        :id="fields.cardYear"
+        v-model="formData.cardYear"
+        @change="changeYear"
+        data-card-field
+        >
+        <option value disabled selected>Year</option>
+        <option
+          v-bind:value="$index + minCardYear"
+          v-for="(n, $index) in 12"
+          v-bind:key="n"
+          >{{ $index + minCardYear }}</option
+        >
+        </select>
+      </div>
+      </div>
+      <div class="w-1/3 px-3">
+      <label class="block mb-3 text-gray-600" for="">CVC</label>
+      <input
+        type="tel"
+        v-number-only
+        :id="fields.cardCvv"
+        maxlength="4"
+        :value="formData.cardCvv"
+        @input="changeCvv"
+        data-card-field
+        autocomplete="off"
+        class="border border-gray-500 rounded-md inline-block py-2 px-3 w-full text-gray-600 tracking-widest"
+      />
+      </div>
+    </div>
+   </b-card>
   </div>
  </div>
 </template>
@@ -134,7 +126,6 @@ export default {
     }
   },
   props: {
-    total: Number,
     formData: {
       type: Object,
       default: () => {

@@ -1,15 +1,15 @@
 <template>
     <div>
-        <shopingCart  />
+        <ShopingCart  />
     </div>
 </template>
 
 <script>
-import shopingCart from '@/components/cart/ShoppingCart'
+import ShopingCart from '@/components/Cart/ShoppingCart'
 export default {
   name: 'cart',
   components: {
-    shopingCart
+    ShopingCart
   }
 }
 </script>
