@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import HomePage from '@/views/Home.vue'
 import OneListPage from '@/views/OneList'
 import CartPage from '@/views/Cart'
-import CheckoutPage from '@/views/Checkout'
 
 Vue.use(VueRouter)
 
@@ -23,12 +22,6 @@ const routes = [
     path: '/cart',
     name: 'Cart',
     component: CartPage,
-    props: true
-  },
-  {
-    path: '/checkout',
-    name: 'Checkout',
-    component: CheckoutPage,
     props: true
   }
 ]

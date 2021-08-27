@@ -20,10 +20,10 @@
                     </b-input-group>
                     <b-input-group prepend="Adress" class="mb-2">
                         <b-form-input v-model="adress" list="my-list-id" type="text"></b-form-input>
-                        <datalist id="my-list-id">
-                            <option v-for="feature in geoReponse.features" v-bind:key="feature.properties.label">{{ feature.properties.label }}</option>
-                        </datalist> 
                     </b-input-group> 
+                    <datalist id="my-list-id">
+                        <option v-for="feature in geoReponse.features" v-bind:key="feature.properties.label">{{ feature.properties.label }}</option>
+                    </datalist> 
                                   
                 </b-col>
                 <b-col>
@@ -36,7 +36,7 @@
 
 <script>
 import axios from 'axios'
-import GoogmeMap from '@/components/cart/GoogleMap'
+import GoogmeMap from '@/components/Cart/GoogleMap'
 export default {
     name: 'FormCheckout',
     components: {
@@ -54,8 +54,7 @@ export default {
     },
     methods: {
         async apiGeoGouv (adress) {
-            console.log(adress.replaceAll(' ','+'))
-            var config = {
+            const config = {
                 method: 'get',
                 url: 'https://api-adresse.data.gouv.fr/search/?q='+adress.replace(' ', '+')+'&limit=10',
                 headers: { }

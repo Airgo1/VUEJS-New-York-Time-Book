@@ -34,6 +34,9 @@
   <div class="contain">
     <FormCheckout />
   </div>
+  <b-card class="contain">
+    <Payment @handle-card="handleCard" />
+  </b-card>
   <div class="contain">
     <b-button block >Checkout</b-button>
   </div>
@@ -41,11 +44,13 @@
 </template>
 
 <script>
-import FormCheckout from '@/components/cart/FormCheckout'
+import FormCheckout from '@/components/Cart/FormCheckout'
+import Payment from '@/components/Checkout/Payment'
 export default {
   name: 'shoppingCarte',
   components: {
-    FormCheckout
+    FormCheckout,
+    Payment
   },
   data () {
     return {
@@ -93,6 +98,15 @@ export default {
     saveCart () {
       const parsed = JSON.stringify(this.cart)
       localStorage.setItem('cart', parsed)
+    },
+    handleAlert () {
+      this.alertVisible = true
+      setTimeout(() => {
+        this.alertVisible = false
+      }, 4000)
+    },
+    handleCard () {
+      this.isCard = true
     }
   },
   watch: {
